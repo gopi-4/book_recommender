@@ -26,14 +26,14 @@ app = Flask(__name__)
 
 @app.route('/popular')
 def popular():
-    result = []
-    book_name = list(popular_df['Book-Title'].values)
-    author = list(popular_df['Book-Author'].values)
-    image = list(popular_df['Image-URL-M'].values)
-    votes = list(popular_df['num_ratings'].values)
-    rating = list(popular_df['avg_rating'].values)
+    popular_books = []
+    book_name = popular_df['Book-Title'].to_list()
+    author = popular_df['Book-Author'].to_list()
+    image = popular_df['Image-URL-M'].to_list()
+    votes = popular_df['num_ratings'].to_list()
+    rating = popular_df['avg_rating'].to_list()
     for i in range(len(book_name)):
-        result.append({
+        popular_books.append({
             "name": book_name[i],
             "author_name": author[i],
             "image": image[i],
@@ -41,7 +41,7 @@ def popular():
             "rating": np.double(rating[i])
         })
 
-    return Response(json.dumps(result))
+    return Response(json.dumps(popular_books))
 
 
 # @app.route('/recommend')
@@ -77,9 +77,9 @@ def recommend(user_input):
     for i in similar_items:
         item = []
         temp_df = books[books['Book-Title'] == pt.index[i[0]]]
-        item.extend(list(temp_df.drop_duplicates('Book-Title')['Book-Title'].values))
-        item.extend(list(temp_df.drop_duplicates('Book-Title')['Book-Author'].values))
-        item.extend(list(temp_df.drop_duplicates('Book-Title')['Image-URL-M'].values))
+        item.extend(temp_df.drop_duplicates('Book-Title')['Book-Title'].to_list())
+        item.extend(temp_df.drop_duplicates('Book-Title')['Book-Author'].to_list())
+        item.extend(temp_df.drop_duplicates('Book-Title')['Image-URL-M'].to_list())
 
         # print(data)
         data.append({

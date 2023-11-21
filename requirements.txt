@@ -2,3 +2,10 @@ flask
 numpy
 pandas
 gunicorn
+click
+importlib-metadata
+itsdangerous
+Jinja2
+MarkupSafe
+Werkzeug
+zipp
