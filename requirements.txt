@@ -1,11 +1,4 @@
 flask
 numpy
-pandas==1.0
+pandas
 gunicorn
-click
-importlib-metadata
-itsdangerous
-Jinja2
-MarkupSafe
-Werkzeug
-zipp
