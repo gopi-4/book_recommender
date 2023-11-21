@@ -1,6 +1,6 @@
 flask
 numpy
-pandas
+pandas=1.2.3
 gunicorn
 click
 importlib-metadata
